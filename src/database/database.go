@@ -3,6 +3,7 @@ package database
 import (
 	"COVID-Database/src/utils"
 	"database/sql"
+	"fmt"
 	"github.com/lib/pq"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -16,7 +17,8 @@ type Database struct {
 var DB *gorm.DB
 
 func Init() *gorm.DB {
-	dbUri := utils.GetEnvVariable("DB_URI")
+
+	dbUri := getDBUri()
 	connection := getConn(dbUri)
 
 	sqlDB, sqlErr := sql.Open("postgres", connection)
@@ -37,6 +39,7 @@ func Init() *gorm.DB {
 
 	DB = gormDB
 	return DB
+
 }
 
 func GetDB() *gorm.DB {
@@ -50,4 +53,14 @@ func getConn(dbUri string) string {
 	}
 	connection += " sslmode=require"
 	return connection
+}
+
+func getDBUri() string {
+	host := utils.GetEnvVariable("HOST")
+	db := utils.GetEnvVariable("DATABASE")
+	user := utils.GetEnvVariable("USER")
+	port := utils.GetEnvVariable("PORT")
+	password := utils.GetEnvVariable("PASSWORD")
+
+	return fmt.Sprintf("postgres://%s:%s@%s:%s/%s", user, password, host, port, db)
 }
