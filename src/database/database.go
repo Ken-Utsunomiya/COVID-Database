@@ -1,9 +1,9 @@
 package database
 
 import (
-	"COVID-Database/src/utils"
 	"database/sql"
 	"fmt"
+	"github.com/projects/COVID_Database/src/utils"
 	"log"
 
 	"github.com/lib/pq"

@@ -1,8 +1,8 @@
 package routers
 
 import (
-	"COVID-Database/src/handlers"
 	"github.com/gin-gonic/gin"
+	"github.com/projects/COVID_Database/src/handlers"
 )
 
 func HospitalRoutes(rg *gin.RouterGroup) {

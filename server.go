@@ -1,9 +1,9 @@
 package main
 
 import (
-	"COVID-Database/src/database"
-	"COVID-Database/src/routers"
 	"github.com/gin-gonic/gin"
+	"github.com/projects/COVID_Database/src/database"
+	"github.com/projects/COVID_Database/src/routers"
 )
 
 type routes struct {
