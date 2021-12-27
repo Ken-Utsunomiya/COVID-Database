@@ -1,15 +1,27 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	"COVID-Database/src/routers"
+	"github.com/gin-gonic/gin"
+)
 
-import "net/http"
+type routes struct {
+	router *gin.Engine
+}
 
 func main() {
-	engine:= gin.Default()
-	engine.GET("/", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{
-			"message": "hello world",
-		})
-	})
-	engine.Run(":3000")
+
+	r := routes{
+		router: gin.Default(),
+	}
+
+	apiEngine := r.router.Group("/api")
+	{
+		v1 := apiEngine.Group("/v1")
+
+		routers.HospitalRoutes(v1)
+	}
+
+	r.router.Run(":3000")
+
 }
