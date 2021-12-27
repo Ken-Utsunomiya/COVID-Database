@@ -1,6 +1,7 @@
 package main
 
 import (
+	"COVID-Database/src/database"
 	"COVID-Database/src/routers"
 	"github.com/gin-gonic/gin"
 )
@@ -21,6 +22,8 @@ func main() {
 
 		routers.HospitalRoutes(v1)
 	}
+
+	database.Init()
 
 	r.router.Run(":3000")
 
