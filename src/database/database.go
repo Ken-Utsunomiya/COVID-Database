@@ -4,10 +4,11 @@ import (
 	"COVID-Database/src/utils"
 	"database/sql"
 	"fmt"
+	"log"
+
 	"github.com/lib/pq"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
-	"log"
 )
 
 type Database struct {
@@ -19,6 +20,7 @@ var DB *gorm.DB
 func Init() *gorm.DB {
 
 	dbUri := getDBUri()
+	fmt.Println(dbUri)
 	connection := getConn(dbUri)
 
 	sqlDB, sqlErr := sql.Open("postgres", connection)
@@ -30,8 +32,8 @@ func Init() *gorm.DB {
 	sqlDB.SetMaxOpenConns(100)
 
 	gormDB, gormErr := gorm.Open(postgres.New(
-		postgres.Config{ Conn: sqlDB }),
-		&gorm.Config{ SkipDefaultTransaction: true},
+		postgres.Config{Conn: sqlDB}),
+		&gorm.Config{SkipDefaultTransaction: true},
 	)
 	if gormErr != nil {
 		log.Fatalf("Error opening gorm database")
@@ -58,7 +60,7 @@ func getConn(dbUri string) string {
 func getDBUri() string {
 	host := utils.GetEnvVariable("HOST")
 	db := utils.GetEnvVariable("DATABASE")
-	user := utils.GetEnvVariable("USER")
+	user := utils.GetEnvVariable("USER_NAME")
 	port := utils.GetEnvVariable("PORT")
 	password := utils.GetEnvVariable("PASSWORD")
 
