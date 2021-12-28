@@ -20,7 +20,6 @@ var DB *gorm.DB
 func Init() *gorm.DB {
 
 	dbUri := getDBUri()
-	fmt.Println(dbUri)
 	connection := getConn(dbUri)
 
 	sqlDB, sqlErr := sql.Open("postgres", connection)

@@ -9,5 +9,5 @@ type Hospital struct {
 }
 
 func (Hospital) TableName() string {
-	return "hospitals"
+	return "hospital"
 }
