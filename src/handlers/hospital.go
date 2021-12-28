@@ -31,6 +31,7 @@ func HospitalRetrieve(c *gin.Context) {
 	hospital, err := hospitalService.GetHospital(hospitalId)
 	if err != nil {
 		_ = c.Error(err).SetType(gin.ErrorTypePublic)
+		return
 	}
 
 	c.JSON(http.StatusOK, hospital)
