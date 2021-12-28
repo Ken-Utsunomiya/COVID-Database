@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/projects/COVID_Database/src/database"
+	"github.com/projects/COVID_Database/src/middlewares"
 	"github.com/projects/COVID_Database/src/routers"
 )
 
@@ -15,6 +16,8 @@ func main() {
 	r := routes{
 		router: gin.Default(),
 	}
+
+	r.router.Use(middlewares.ErrorMiddleware())
 
 	apiEngine := r.router.Group("/api")
 	{
