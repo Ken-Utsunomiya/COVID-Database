@@ -10,5 +10,6 @@ func HospitalRoutes(rg *gin.RouterGroup) {
 	hospital := rg.Group("/hospitals")
 	{
 		hospital.GET("/", handlers.HospitalList)
+		hospital.GET("/:hospital_id", handlers.HospitalRetrieve)
 	}
 }
