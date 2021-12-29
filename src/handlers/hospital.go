@@ -59,3 +59,16 @@ func HospitalRegister(c *gin.Context) {
 
 	c.JSON(http.StatusCreated, hospital)
 }
+
+func HospitalDelete(c *gin.Context) {
+
+	hospitalService := services.HospitalService{}
+
+	hospitalId, _ := strconv.Atoi(c.Param("hospital_id"))
+	if err := hospitalService.DeleteHospital(hospitalId); err != nil {
+		_ = c.Error(err).SetType(gin.ErrorTypePublic)
+		return
+	}
+
+	c.Status(http.StatusNoContent)
+}
