@@ -11,5 +11,6 @@ func HospitalRoutes(rg *gin.RouterGroup) {
 	{
 		hospital.GET("/", handlers.HospitalList)
 		hospital.GET("/:hospital_id", handlers.HospitalRetrieve)
+		hospital.POST("/", handlers.HospitalRegister)
 	}
 }
