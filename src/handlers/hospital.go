@@ -8,6 +8,7 @@ import (
 
 	"github.com/projects/COVID_Database/src/middlewares"
 	"github.com/projects/COVID_Database/src/services"
+	"github.com/projects/COVID_Database/src/validators"
 )
 
 func HospitalList(c *gin.Context) {
