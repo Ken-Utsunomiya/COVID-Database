@@ -3,6 +3,7 @@ package database
 import (
 	"database/sql"
 	"fmt"
+	"github.com/projects/COVID_Database/src/models"
 	"github.com/projects/COVID_Database/src/utils"
 	"log"
 
@@ -64,4 +65,8 @@ func getDBUri() string {
 	password := utils.GetEnvVariable("PASSWORD")
 
 	return fmt.Sprintf("postgres://%s:%s@%s:%s/%s", user, password, host, port, db)
+}
+
+func AutoMigrate(db *gorm.DB) {
+	db.AutoMigrate(&models.Hospital{})
 }

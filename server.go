@@ -26,7 +26,8 @@ func main() {
 		routers.HospitalRoutes(v1)
 	}
 
-	database.Init()
+	db := database.Init()
+	database.AutoMigrate(db)
 
 	r.router.Run(":3000")
 
