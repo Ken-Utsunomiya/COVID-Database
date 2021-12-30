@@ -7,11 +7,11 @@ import (
 )
 
 const (
-	BadRequest          = "Bad Request"
-	NotAuthorized       = "Not Authorized"
-	NotFound            = "Not Found"
+	BadRequest          = "bad request"
+	NotAuthorized       = "not authorized"
+	NotFound            = "not found"
 	RecordNotFound      = "record not found"
-	InternalServerError = "Internal Server Error"
+	InternalServerError = "internal server error"
 )
 
 func ErrorMiddleware() gin.HandlerFunc {
