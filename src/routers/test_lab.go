@@ -11,5 +11,6 @@ func TestLabRoutes(rg *gin.RouterGroup) {
 	testLab := rg.Group("/test_labs")
 	{
 		testLab.GET("/", handlers.TestLabList)
+		testLab.GET("/:test_lab_id", handlers.TestLabRetrieve)
 	}
 }

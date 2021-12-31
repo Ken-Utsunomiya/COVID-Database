@@ -24,6 +24,7 @@ func main() {
 		v1 := apiEngine.Group("/v1")
 
 		routers.HospitalRoutes(v1)
+		routers.TestLabRoutes(v1)
 	}
 
 	db := database.Init()

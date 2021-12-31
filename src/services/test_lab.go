@@ -16,3 +16,13 @@ func (TestLabService) GetTestLabs() ([]models.TestLab, error) {
 
 	return testLabs, err
 }
+
+func (TestLabService) GetTestLab(id int) (models.TestLab, error) {
+
+	db := database.GetDB()
+
+	testLab := models.TestLab{}
+	err := db.First(&testLab, id).Error
+
+	return testLab, err
+}
