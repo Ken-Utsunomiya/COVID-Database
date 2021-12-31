@@ -13,5 +13,6 @@ func TestLabRoutes(rg *gin.RouterGroup) {
 		testLab.GET("/", handlers.TestLabList)
 		testLab.GET("/:test_lab_id", handlers.TestLabRetrieve)
 		testLab.POST("/", handlers.TestLabRegister)
+		testLab.DELETE("/:test_lab_id", handlers.TestLabDelete)
 	}
 }

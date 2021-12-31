@@ -61,3 +61,16 @@ func TestLabRegister(c *gin.Context) {
 	c.JSON(http.StatusCreated, testLab)
 
 }
+
+func TestLabDelete(c *gin.Context) {
+
+	testLabService := services.TestLabService{}
+
+	testLabId, _ := strconv.Atoi(c.Param("test_lab_id"))
+	if err := testLabService.DeleteTestLab(testLabId); err != nil {
+		_ = c.Error(err).SetType(gin.ErrorTypePublic)
+		return
+	}
+
+	c.Status(http.StatusNoContent)
+}

@@ -4,6 +4,7 @@ import (
 	"github.com/projects/COVID_Database/src/database"
 	"github.com/projects/COVID_Database/src/models"
 	"github.com/projects/COVID_Database/src/validators"
+	"gorm.io/gorm"
 )
 
 type TestLabService struct{}
@@ -37,4 +38,25 @@ func (TestLabService) AddTestLab(request validators.TestLabRegisterRequest) (mod
 	err := db.Model(models.TestLab{}).Create(&testLab).Error
 
 	return testLab, err
+}
+
+func (TestLabService) DeleteTestLab(id int) error {
+
+	db := database.GetDB()
+
+	err := db.Transaction(func(tx *gorm.DB) error {
+
+		if err := tx.First(&models.TestLab{}, id).Error; err != nil {
+			return err
+		}
+
+		if err := tx.Delete(&models.TestLab{}, id).Error; err != nil {
+			tx.Rollback()
+			return err
+		}
+
+		return nil
+	})
+
+	return err
 }
