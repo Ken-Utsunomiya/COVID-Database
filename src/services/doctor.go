@@ -16,3 +16,15 @@ func (DoctorService) GetDoctors() ([]models.Doctor, error) {
 
 	return doctors, err
 }
+
+func (DoctorService) GetHospitalDoctors(hospitalId int) ([]models.Doctor, error) {
+
+	db := database.GetDB().
+		Model(&models.Hospital{}).
+		Where("hospital_id = ?", hospitalId)
+
+	doctors := make([]models.Doctor, 0)
+	err := db.Find(&doctors).Error
+
+	return doctors, err
+}
