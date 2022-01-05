@@ -69,4 +69,6 @@ func getDBUri() string {
 
 func AutoMigrate(db *gorm.DB) {
 	db.AutoMigrate(&models.Hospital{})
+	db.AutoMigrate(&models.TestLab{})
+	db.AutoMigrate(&models.HealthRecord{})
 }
