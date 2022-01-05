@@ -13,7 +13,7 @@ import (
 
 func HospitalList(c *gin.Context) {
 
-	hospitalService := services.HospitalService{}
+	hospitalService := services.DoctorService{}
 
 	hospitalList, err := hospitalService.GetHospitals()
 	if err != nil {
@@ -29,7 +29,7 @@ func HospitalList(c *gin.Context) {
 
 func HospitalRetrieve(c *gin.Context) {
 
-	hospitalService := services.HospitalService{}
+	hospitalService := services.DoctorService{}
 
 	hospitalId, _ := strconv.Atoi(c.Param("hospital_id"))
 	hospital, err := hospitalService.GetHospital(hospitalId)
@@ -43,7 +43,7 @@ func HospitalRetrieve(c *gin.Context) {
 
 func HospitalRegister(c *gin.Context) {
 
-	hospitalService := services.HospitalService{}
+	hospitalService := services.DoctorService{}
 
 	registerRequest := validators.HospitalRegisterRequest{}
 	if err := c.ShouldBindJSON(&registerRequest); err != nil {
@@ -62,7 +62,7 @@ func HospitalRegister(c *gin.Context) {
 
 func HospitalDelete(c *gin.Context) {
 
-	hospitalService := services.HospitalService{}
+	hospitalService := services.DoctorService{}
 
 	hospitalId, _ := strconv.Atoi(c.Param("hospital_id"))
 	if err := hospitalService.DeleteHospital(hospitalId); err != nil {
