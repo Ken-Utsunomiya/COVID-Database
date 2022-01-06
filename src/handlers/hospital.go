@@ -72,26 +72,3 @@ func HospitalDelete(c *gin.Context) {
 
 	c.Status(http.StatusNoContent)
 }
-
-func HospitalDoctorList(c *gin.Context) {
-
-	hospitalService := services.HospitalService{}
-	doctorService := services.DoctorService{}
-
-	hospitalId, _ := strconv.Atoi(c.Param("hospital_id"))
-	_, err := hospitalService.GetHospital(hospitalId)
-	if err != nil {
-		_ = c.Error(err).SetType(gin.ErrorTypePublic)
-		return
-	}
-
-	doctorList, err := doctorService.GetHospitalDoctors(hospitalId)
-	if err != nil {
-		_ = c.Error(err).SetType(gin.ErrorTypePublic)
-		return
-	}
-
-	c.JSON(http.StatusOK, gin.H{
-		"doctors": doctorList,
-	})
-}

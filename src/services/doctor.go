@@ -28,3 +28,15 @@ func (DoctorService) GetHospitalDoctors(hospitalId int) ([]models.Doctor, error)
 
 	return doctors, err
 }
+
+func (DoctorService) GetHospitalDoctor(hospitalId int, doctorId int) (models.Doctor, error) {
+
+	db := database.GetDB().
+		Model(&models.Hospital{}).
+		Where("hospital_id = ?", hospitalId)
+
+	doctor := models.Doctor{}
+	err := db.First(&doctor, doctorId).Error
+
+	return doctor, err
+}
