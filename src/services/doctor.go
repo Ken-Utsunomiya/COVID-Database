@@ -20,7 +20,7 @@ func (DoctorService) GetDoctors() ([]models.Doctor, error) {
 func (DoctorService) GetHospitalDoctors(hospitalId int) ([]models.Doctor, error) {
 
 	db := database.GetDB().
-		Model(&models.Hospital{}).
+		Model(&models.Doctor{}).
 		Where("hospital_id = ?", hospitalId)
 
 	doctors := make([]models.Doctor, 0)
@@ -32,7 +32,7 @@ func (DoctorService) GetHospitalDoctors(hospitalId int) ([]models.Doctor, error)
 func (DoctorService) GetHospitalDoctor(hospitalId int, doctorId int) (models.Doctor, error) {
 
 	db := database.GetDB().
-		Model(&models.Hospital{}).
+		Model(&models.Doctor{}).
 		Where("hospital_id = ?", hospitalId)
 
 	doctor := models.Doctor{}
