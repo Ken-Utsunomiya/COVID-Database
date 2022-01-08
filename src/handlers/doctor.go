@@ -68,3 +68,26 @@ func HospitalDoctorRetrieve(c *gin.Context) {
 
 	c.JSON(http.StatusOK, doctor)
 }
+
+func HospitalDoctorDelete(c *gin.Context) {
+
+	hospitalService := services.HospitalService{}
+	doctorService := services.DoctorService{}
+
+	hospitalId, _ := strconv.Atoi(c.Param("hospital_id"))
+	doctorId, _ := strconv.Atoi(c.Param("doctor_id"))
+
+	_, err := hospitalService.GetHospital(hospitalId)
+	if err != nil {
+		_ = c.Error(err).SetType(gin.ErrorTypePublic)
+		return
+	}
+
+	doctor, err := doctorService.DeleteHospitalDoctor(hospitalId, doctorId)
+	if err != nil {
+		_ = c.Error(err).SetType(gin.ErrorTypePublic)
+		return
+	}
+
+	c.JSON(http.StatusOK, doctor)
+}
