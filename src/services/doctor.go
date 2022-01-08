@@ -40,3 +40,16 @@ func (DoctorService) GetHospitalDoctor(hospitalId int, doctorId int) (models.Doc
 
 	return doctor, err
 }
+
+func (DoctorService) DeleteHospitalDoctor(hospitalId int, doctorId int) error {
+
+	db := database.GetDB().
+		Model(&models.Doctor{}).
+		Where("hospital_id = ?", hospitalId)
+
+	if err := db.Delete(&models.Doctor{}, doctorId).Error; err != nil {
+		return err
+	}
+
+	return nil
+}
