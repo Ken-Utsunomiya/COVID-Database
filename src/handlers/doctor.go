@@ -83,11 +83,10 @@ func HospitalDoctorDelete(c *gin.Context) {
 		return
 	}
 
-	doctor, err := doctorService.DeleteHospitalDoctor(hospitalId, doctorId)
-	if err != nil {
+	if err := doctorService.DeleteHospitalDoctor(hospitalId, doctorId); err != nil {
 		_ = c.Error(err).SetType(gin.ErrorTypePublic)
 		return
 	}
 
-	c.JSON(http.StatusOK, doctor)
+	c.Status(http.StatusNoContent)
 }
