@@ -3,6 +3,7 @@ package services
 import (
 	"github.com/projects/COVID_Database/src/database"
 	"github.com/projects/COVID_Database/src/models"
+	"github.com/projects/COVID_Database/src/validators"
 )
 
 type DoctorService struct{}
@@ -37,6 +38,17 @@ func (DoctorService) GetHospitalDoctor(hospitalId int, doctorId int) (models.Doc
 
 	doctor := models.Doctor{}
 	err := db.First(&doctor, doctorId).Error
+
+	return doctor, err
+}
+
+func (DoctorService) AddDoctor(request validators.DoctorRegisterRequest, hospitalId int) (models.Doctor, error) {
+
+	db := database.GetDB()
+
+	doctor := validators.RegisterRequestToDoctorModel(request, hospitalId)
+
+	err := db.Model(models.Doctor{}).Create(&doctor).Error
 
 	return doctor, err
 }
