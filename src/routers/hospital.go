@@ -16,5 +16,6 @@ func HospitalRoutes(rg *gin.RouterGroup) {
 		hospital.DELETE("/:hospital_id", handlers.HospitalDelete)
 		hospital.GET("/:hospital_id/doctors", handlers.HospitalDoctorList)
 		hospital.GET("/:hospital_id/doctors/:doctor_id", handlers.HospitalDoctorRetrieve)
+		hospital.DELETE("/:hospital_id/doctors/:doctor_id", handlers.HospitalDoctorDelete)
 	}
 }
